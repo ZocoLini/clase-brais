@@ -24,31 +24,30 @@ long read_long()
     return num;
 }
 
-float* read_float_array(int* size)
-{
-    const int MAX_SIZE = 100;
-    float* array = malloc(MAX_SIZE * sizeof(float));
+
+float* read_float_array(int* size) {
+    int capacidad = 10; // tamaño inicial
+    float* arreglo = malloc(capacidad * sizeof(float));
 
     int i = 0;
+    printf("Ingrese números decimales (fin con una letra o CTRL+D/CTRL+Z):\n");
 
-    while (scanf("%f", &array[i]))
-    {
-        ++i;
-        if (i == MAX_SIZE)
-        {
-            printf("El arreglo esta lleno.\n");
+    while (1) {
+        float valor;
+        int r = scanf("%f", &valor);
+
+        if (r != 1) // fin de la entrada
             break;
+
+        if (i == capacidad) {
+            capacidad *= 2;
+            float* tmp = realloc(arreglo, capacidad * sizeof(float));
+            arreglo = tmp;
         }
+
+        arreglo[i++] = valor;
     }
 
     *size = i;
-
-    float* final_array = malloc(i * sizeof(float));
-    for (int j = 0; j < i; ++j)
-    {
-        final_array[j] = array[j];
-    }
-    free(array);
-
-    return final_array;
+    return arreglo;
 }
