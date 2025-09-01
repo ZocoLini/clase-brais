@@ -2,7 +2,7 @@
 
 cd ../..
 cd build
-cmake .. -DCMAKE_BUILD_TYPE=Debug
+cmake ..
 make -j 20
 cd modules/calculadora
 ./calculadora

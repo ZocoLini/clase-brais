@@ -2,6 +2,7 @@
 
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 void sumar()
 {
@@ -58,16 +59,29 @@ void ruffini()
     int size;
     float* cocientes = read_float_array(&size);
 
-    for (int i = 1; i <= cocientes[size - 1]; i++)
+    for (int i = 1; i <= abs((int)cocientes[size - 1]); i++)
     {
         float anterior = cocientes[0];
-        for (int j = 1; j < size;           j = j + 1)
+        for (int j = 1; j < size; j = j + 1)
         {
             anterior = anterior * i + cocientes[j];
         }
-        
+        if (anterior == 0)
+        {
+            printf("%d es uan raiz del polinomio \n", i);
+        }
+
+        anterior = cocientes[0];
+        for (int j = 1; j < size; j = j + 1)
+        {
+            anterior = anterior * -i + cocientes[j];
+        }
+        if (anterior == 0)
+        {
+            printf("%d es uan raiz del polinomio \n", -i);
+        }
     }
- 
+
     // for (int i = 0; i < size; i = i + 1)
     // {
     //     printf("%f",cocientes[i]);

@@ -1,7 +1,6 @@
 #include "operaciones.h"
 
 #include <stdio.h>
-#include <stdlib.h>
 
 #define true 1
 #define false 0
@@ -47,12 +46,12 @@ int main(void)
             printf("Opcion invalida\n");
             break;
         }
-
         getchar();
+
         printf("Presiona Enter para continuar...");
         getchar();
 
-        system("clear");
+        // system("clear");
     }
 }
 
